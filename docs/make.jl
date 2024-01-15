@@ -1,5 +1,11 @@
-using Subspace_MESE
-using Documenter
+try
+    using Subspace_MESE
+catch
+    using Subspace_MESE
+end
+using Documenter, Literate
+
+#include("generate_lit.jl")
 
 DocMeta.setdocmeta!(Subspace_MESE, :DocTestSetup, :(using Subspace_MESE); recursive=true)
 
@@ -16,6 +22,12 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
+        "Convert data" => "convert.md",
+        "Temporal Basis" => "building_basis.md",
+        "Subspace Reconstruction" => "reconstruction_subspace.md",
+        "T₂ mapping" => "fit_T2.md",
+        #"Examples" => pages("examples"),
+        "API" => "api.md",
     ],
 )
 
