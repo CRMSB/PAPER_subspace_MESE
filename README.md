@@ -85,8 +85,9 @@ juliaup add 1.9.3
 ```
 juliaup default 1.9.3
 ```
+</details>
 
-## Installation
+## MESE Package Installation
 To install this package, enter the Julia package manager by typing `]` in the REPL and then calling the command:
 
 `add https://github.com/atrotier/Subspace_MESE.jl`

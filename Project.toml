@@ -3,6 +3,16 @@ uuid = "03ee4b65-1735-4169-82da-5df6ad43f66c"
 authors = ["aTrotier <a.trotier@gmail.com> and contributors"]
 version = "1.0.0-DEV"
 
+[deps]
+BartIO = "8b90e6a2-6e4d-4906-89ae-b5f72ca4a65b"
+EPGsim = "b6a82cc1-40c9-4006-90b7-9176002c0410"
+FFTW = "7a1cc6ca-52ef-59f5-83cd-3a7055c09341"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+LsqFit = "2fda8390-95c7-5789-9bda-21331edee243"
+MRICoilSensitivities = "c57eb701-aafc-44a2-a53c-128049758959"
+MRIFiles = "5a6f062f-bf45-497d-b654-ad17aae2a530"
+MRIReco = "bdf86e05-2d2b-5731-a332-f3fe1f9e047f"
+
 [compat]
 julia = "1"
 
