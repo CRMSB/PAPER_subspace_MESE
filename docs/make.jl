@@ -5,7 +5,7 @@ catch
 end
 using Documenter, Literate
 
-#include("generate_lit.jl")
+include("generate_lit.jl")
 
 DocMeta.setdocmeta!(Subspace_MESE, :DocTestSetup, :(using Subspace_MESE); recursive=true)
 
@@ -26,7 +26,7 @@ makedocs(;
         "Temporal Basis" => "building_basis.md",
         "Subspace Reconstruction" => "reconstruction_subspace.md",
         "T₂ mapping" => "fit_T2.md",
-        #"Examples" => pages("examples"),
+        "Examples" => pages("examples"),
         "API" => "api.md",
     ],
 )
