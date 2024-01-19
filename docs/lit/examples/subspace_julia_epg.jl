@@ -133,7 +133,7 @@ end
 
 #plot echo 10
 
-ax = Axis(f[2,1];ylabel = "Echo n°1\nTE = 7 ms",titlesize,ylabelsize)
+ax = Axis(f[2,1];ylabel = "Echo n°10\nTE = 70 ms",titlesize,ylabelsize)
 heatmap!(ax,im_u_sos[:,:,slice_to_show,10,1,1];colorrange,colormap)
 hidedecorations!(ax,label=false)
 ax = Axis(f[2,2];titlesize)
@@ -147,8 +147,8 @@ if(isfile(path_bart))
 end
 
 #plot T2 map
-colorrange=(0,200)
-colormap=:viridis
+colorrange=(0,150)
+colormap=:magma
 
 ax = Axis(f[3,1];ylabel = "T₂ map",titlesize,ylabelsize)
 heatmap!(ax,fit_und[:,:,2];colorrange,colormap)
