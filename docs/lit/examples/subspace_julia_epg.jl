@@ -166,6 +166,6 @@ Colorbar(f[3,end+1],h,label = "T₂ [ms]",labelrotation=-pi/2,labelsize=20)
 
 f
 
-#save("fig_bart_julia.png",f)
-#save("fig_bart_julia.eps",f)
-#save("fig_bart_julia.pdf",f)
+save("fig_bart_julia.png",f)
+save("fig_bart_julia.eps",f)
+save("fig_bart_julia.pdf",f)
