@@ -11,7 +11,7 @@ for (root, _, files) in walkdir(lit), file in files
     ipath = joinpath(root, file)
     opath = splitdir(replace(ipath, lit => gen))[1]
     Literate.markdown(ipath, opath, documenter = execute)
-    Literate.notebook(ipath, opath; execute = true)
+    Literate.notebook(ipath, opath; execute = true) # false if we want error
 end
 
 # functions
