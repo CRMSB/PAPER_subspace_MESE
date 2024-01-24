@@ -113,7 +113,7 @@ The figure will be saved in the `docs` folder
 
 
 [docs-img]: https://img.shields.io/badge/docs-latest%20release-blue.svg
-[docs-url]: https://atrotier.github.io/Subspace_MESE.jl
+[docs-url]: https://atrotier.github.io/PAPER_subspace_MESE/dev/
 
 [paper-img]: https://img.shields.io/badge/doi-10.1002/mrm.29945-blue.svg
 [paper-url]: https://doi.org/10.1002/mrm.???
