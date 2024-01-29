@@ -24,7 +24,7 @@ using CairoMakie
 # ## Define the path to the raw dataset
 # If the folder/file does not exists we are in the github CI environement and we used for the plots the images
 
-path_raw = "/workspace_QMRI/PROJECTS_DATA/2021_RECH_mcT2_Bruker/PROJ_JULIA_MSME_CS/data/exp_raw/mouse_patho/20230317_085834_AT_MSME_CS_44_1_1/10"
+path_raw = "a/workspace_QMRI/PROJECTS_DATA/2021_RECH_mcT2_Bruker/PROJ_JULIA_MSME_CS/data/exp_raw/mouse_patho/20230317_085834_AT_MSME_CS_44_1_1/10"
 
 # define the path to the bart library
 path_bart = "/home/CODE/bart/bart" 
