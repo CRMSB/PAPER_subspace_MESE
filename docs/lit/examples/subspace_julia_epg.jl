@@ -1,16 +1,16 @@
 #---------------------------------------------------------
-# # [Generate article figure](@id 03-subspaceReconstruction)
+# # [Generate figure 8](@id 03-subspaceReconstruction)
 #---------------------------------------------------------
 
 # ## Description
 # 
-# This example described how to perform a subspace reconstruction for $T_2$ mapping acceleration.
+# This example describes how to perform a subspace reconstruction for $T_2$ mapping.
 # This script is also used to generate the last figure of the article.
 # 
 # ![Reconstruction Pipeline](../../img/fig_bart_julia.png)
 #
 # To do so you need to edit `path_raw` to the bruker dataset available [here](https://zenodo.org/records/10514187) 
-# and you need to compile bart and edit `path_bart` to the compiled bart library
+# and you need to compile BART and edit the `path_bart` to the compiled bart library
 
 # ## Setup and define global variable
 using Subspace_MESE
@@ -21,12 +21,12 @@ using Subspace_MESE.LinearAlgebra
 using Subspace_MESE.FFTW
 using CairoMakie
 
-# ## Define the path to the raw dataset
-# If the folder/file does not exists we are in the github CI environement and we used for the plots the images
+# ## Define paths
+#to the raw dataset :
 
 path_raw = "/workspace_QMRI/PROJECTS_DATA/2021_RECH_mcT2_Bruker/PROJ_JULIA_MSME_CS/data/exp_raw/mouse_patho/20230317_085834_AT_MSME_CS_44_1_1/10"
 
-# define the path to the bart library
+#and to the bart library :
 path_bart = "/home/CODE/bart/bart" 
 
 slice_to_show = 55
@@ -39,7 +39,7 @@ acq = AcquisitionData(raw,OffsetBruker = true);
 # ## Estimate the coil sensitivity map with espirit
 coilsens = espirit(acq,eigThresh_2=0.0);
 
-# ## Undersampling Recontruction
+# ## Direct reconstruction of undersampled acquisition
 
 params = Dict{Symbol,Any}()
 params[:reconSize] = acq.encodingSize
@@ -50,7 +50,7 @@ im_u_sos = mergeChannels(im_u)
 
 heatmap(im_u_sos[:,:,55,15,1,1],colormap=:grays)
 
-# ##  Generate basis from an EPG simulation
+# ##  Subspace generation with the EPG simulation
 B1_vec = 0.8:0.01:1.0
 T2_vec = 1.0:1.0:2000.0
 T1_vec = 1000.0
@@ -62,7 +62,7 @@ NUM_BASIS = 6
 basis_epg,_= MESE_basis_EPG(NUM_BASIS,TE,ETL,T2_vec,B1_vec,T1_vec;TR=TR,dummy=dummy)
 lines(abs.(basis_epg[:,2]))
 
-# ## Subspace reconstruction with EPG dictionnary
+# ## Subspace reconstruction with EPG dictionary
 params = Dict{Symbol,Any}()
 params[:reconSize] = acq.encodingSize
 params[:reco] = "multiCoilMultiEchoSubspace"
@@ -80,7 +80,7 @@ params[:basis] = basis_epg
 α_epg = reconstruction(acq, params)
 im_TE_julia = abs.(applySubspace(α_epg, params[:basis]));
 
-# ## BART reco
+# ## BART reconstruction
 # In order to use BartIO, we need to send the path to the bart library.
 # You can check that it works with the following code
 # ```julia
@@ -95,7 +95,7 @@ if isfile(path_bart)
     im_sub_bart,im_TE_bart = subspace_bart_reconstruction(acq,params,path_bart)
 end;
 
-# ## Fit the data to obtain T₂ maps
+# ## Fitting of the data to obtain T₂ maps
 
 TE_vec = Float32.(LinRange(TE,TE*ETL,ETL))
 
@@ -115,7 +115,7 @@ for i in eachindex(sl)
     end;
 end
 
-# ## Generating article figure 8
+# ## Visualization of the article figure 8
 
 using CairoMakie.Makie.MakieCore
 begin

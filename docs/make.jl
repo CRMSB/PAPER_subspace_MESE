@@ -23,7 +23,7 @@ makedocs(;
     pages=[
         "Home" => "index.md",
         "Convert data" => "convert.md",
-        "Temporal Basis" => "building_basis.md",
+        "Subspace generation" => "building_basis.md",
         "Subspace Reconstruction" => "reconstruction_subspace.md",
         "T₂ mapping" => "fit_T2.md",
         "Examples" => pages("examples"),

@@ -8,10 +8,10 @@
 
 
 Subspace_MESE.jl is a Julia package that implements the subspace reconstruction for an accelerated MESE sequence for Bruker scanner (**PV6.0.1**). 
-The reconstruction can be performed using MRIReco.jl (or BART for comparison purpose) with 3 temporal basis :
-- using the calibration area
-- using an exponential dictionary
-- using an EPG dictionary
+The reconstruction can be performed using MRIReco.jl (or BART for comparison purpose) with 3 subspaces generated with :
+- a calibration area
+- mono-exponential dictionary
+- EPG dictionary
 
 ## Julia Installation
 
@@ -91,24 +91,28 @@ juliaup default 1.9.3
 
 - Download the current repository : `git clone https://github.com/aTrotier/PAPER_subspace_MESE`
 - move your terminal to the repository and launch julia `julia -t auto --project`
-- enter the Julia package manager by typing `]` in the REPL and then calling the command:
+- enter the Julia package manager by typing `]` in the REPL. (the REPL should turn in blue)
+- Type : 
 `dev .`
 - if you want to use the package you can now type in any julia session : `using Subspace_MESE`
 
-## Reproducing the figure
-In order to reproduce the last figure, you need to :
-- compile the BART toolbox (you can skip this step if you don't want to plot the BART reconstruction)
+## Reproducing figure 8
+In order to reproduce figure 8, you need to :
+- compile the BART toolbox : https://mrirecon.github.io/bart/ (you can skip this step if you don't want to plot the BART reconstruction)
 - download the dataset : https://zenodo.org/records/10514187?preview=1
-- download the current repository and move your terminal in the docs folder
-- edit the script in `docs/lit/example/subspace_julia_epg.jl` and put the correct path in the variable `path_raw` and `path_bart`
-- launch julia `julia --project -t auto`
+- download the current repository : `git clone https://github.com/aTrotier/PAPER_subspace_MESE`
+- Open a terminal and move to the docs folder in this repository
+- edit the script in `docs/lit/example/subspace_julia_epg.jl` and put the correct path in the variable 
+  - `path_raw` should point to the bruker folder `10`
+  - `path_bart` should point to the compiled bart library
+- launch julia in the docs folder with this command in the terminal: `julia --project -t auto`
 - run the literate example :
   ```julia
   using Pkg
   Pkg.instantiate()
   include("lit/example/subspace_julia_epg.jl")
   ```
-The figure will be saved in the `docs` folder
+The figure will be saved as `fig_bart_julia` in the `docs` folder.
 
 
 
