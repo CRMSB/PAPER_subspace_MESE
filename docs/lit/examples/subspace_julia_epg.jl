@@ -99,50 +99,60 @@ end;
 
 TE_vec = Float32.(LinRange(TE,TE*ETL,ETL))
 
-fit_und= Subspace_MESE.T2Fit_exp_noise(abs.(im_u_sos[:,:,slice_to_show,:,1,1]),TE_vec;removePoint=true,L=4)
-fit_julia = Subspace_MESE.T2Fit_exp_noise(abs.(im_TE_julia[:,:,slice_to_show,:,1,1]),TE_vec;removePoint=true,L=4)
-if isfile(path_bart)
-    fit_bart = Subspace_MESE.T2Fit_exp_noise(abs.(im_TE_bart[:,:,slice_to_show,1,1,:]),TE_vec;removePoint=true,L=4)
-end;
+sl = Tuple[]
+push!(sl,(:,:,slice_to_show))
+push!(sl,(:,65,:))
+push!(sl,(65,:,:))
+
+fit_und = Any[]
+fit_julia = Any[]
+fit_bart = Any[]
+for i in eachindex(sl)
+    push!(fit_und,Subspace_MESE.T2Fit_exp_noise(abs.(im_u_sos[sl[i]...,:,1,1]),TE_vec;removePoint=true,L=4))
+    push!(fit_julia,Subspace_MESE.T2Fit_exp_noise(abs.(im_TE_julia[sl[i]...,:,1,1]),TE_vec;removePoint=true,L=4))
+    if isfile(path_bart)
+        push!(fit_bart,Subspace_MESE.T2Fit_exp_noise(abs.(im_TE_bart[sl[i]...,1,1,:]),TE_vec;removePoint=true,L=4))
+    end;
+end
 
 # ## Generating article figure 8
 
 using CairoMakie.Makie.MakieCore
-
+begin
 titlesize=20
 ylabelsize=20
 aspect = DataAspect()
 
-f=Figure(size=(1200,1000))
+f=Figure(size=(1200,1600))
 #plot echo 1
 colorrange=MakieCore.Automatic()
 colormap=:grays
 
 ax = Axis(f[1,1];title="FFT\n ",ylabel = "Echo n°1\nTE = 7 ms",titlesize,ylabelsize)
-heatmap!(ax,im_u_sos[:,:,slice_to_show,1,1,1];colorrange,colormap)
+heatmap!(ax,circshift(im_u_sos[:,:,slice_to_show,1,1,1],(0,-10));colorrange,colormap)
 hidedecorations!(ax,label=false)
 ax = Axis(f[1,2];title="MRIReco\nW=0.03",titlesize)
-heatmap!(ax,im_TE_julia[:,:,slice_to_show,1,1,1];colorrange,colormap)
+heatmap!(ax,circshift(im_TE_julia[:,:,slice_to_show,1,1,1],(0,-10));colorrange,colormap)
 hidedecorations!(ax)
 
 if(isfile(path_bart))
     ax = Axis(f[1,3];title="BART\nW=0.0025",titlesize)
-    heatmap!(ax,abs.(im_TE_bart[:,:,slice_to_show,1,1,1]);colorrange,colormap)
+    heatmap!(ax,circshift(abs.(im_TE_bart[:,:,slice_to_show,1,1,1]),(0,-10));colorrange,colormap)
     hidedecorations!(ax)
 end
 
 #plot echo 10
 
 ax = Axis(f[2,1];ylabel = "Echo n°10\nTE = 70 ms",titlesize,ylabelsize)
-heatmap!(ax,im_u_sos[:,:,slice_to_show,10,1,1];colorrange,colormap)
+heatmap!(ax,circshift(im_u_sos[:,:,slice_to_show,10,1,1],(0,-10));colorrange,colormap)
 hidedecorations!(ax,label=false)
 ax = Axis(f[2,2];titlesize)
-heatmap!(ax,im_TE_julia[:,:,slice_to_show,10,1,1];colorrange,colormap)
+heatmap!(ax,circshift(im_TE_julia[:,:,slice_to_show,10,1,1],(0,-10));colorrange,colormap)
 hidedecorations!(ax)
 
 if(isfile(path_bart))
     ax = Axis(f[2,3];titlesize)
-    heatmap!(ax,abs.(im_TE_bart[:,:,slice_to_show,1,1,10]);colorrange,colormap)
+    heatmap!(ax,circshift(abs.(im_TE_bart[:,:,slice_to_show,1,1,10]),(0,-10));colorrange,colormap)
     hidedecorations!(ax)
 end
 
@@ -150,21 +160,54 @@ end
 colorrange=(0,150)
 colormap=:magma
 
-ax = Axis(f[3,1];ylabel = "T₂ map",titlesize,ylabelsize)
-heatmap!(ax,fit_und[:,:,2];colorrange,colormap)
+ax = Axis(f[3,1];ylabel = "T₂ map: coronal",titlesize,ylabelsize)
+heatmap!(ax,circshift(fit_und[1][:,:,2],(0,-10));colorrange,colormap)
 hidedecorations!(ax,label=false)
 ax = Axis(f[3,2])
-h=heatmap!(ax,fit_julia[:,:,2];colorrange,colormap)
+h=heatmap!(ax,circshift(fit_julia[1][:,:,2],(0,-10));colorrange,colormap)
 hidedecorations!(ax)
 if(isfile(path_bart))
     ax = Axis(f[3,3])
-    heatmap!(ax,fit_bart[:,:,2];colorrange,colormap)
+    heatmap!(ax,circshift(fit_bart[1][:,:,2],(0,-10));colorrange,colormap)
     hidedecorations!(ax)
 end
+Colorbar(f[3,4],h,label = "T₂ [ms]",labelrotation=-pi/2,labelsize=20)
+#rowgap!(f.layout,3,10)
 
-Colorbar(f[3,end+1],h,label = "T₂ [ms]",labelrotation=-pi/2,labelsize=20)
+#plot T2 sag
+sl_c = (0,20)
+ax = Axis(f[4,1];ylabel = "T₂ map: sagittal",titlesize,ylabelsize,aspect=128/96)
+heatmap!(ax,circshift(reverse(fit_und[2][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax,label=false)
+ax = Axis(f[4,2],aspect=128/96)
+h=heatmap!(ax,circshift(reverse(fit_julia[2][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax)
+if(isfile(path_bart))
+    ax = Axis(f[4,3],aspect=128/96)
+    heatmap!(ax,circshift(reverse(fit_bart[2][:,:,2],dims=2),sl_c);colorrange,colormap)
+    hidedecorations!(ax)
+end
+Colorbar(f[4,4],h,label = "T₂ [ms]",labelrotation=-pi/2,labelsize=20,height=Relative(0.85))
+rowgap!(f.layout,3,-10)
+
+#plot T2 axial
+sl_c = (-10,20)
+ax = Axis(f[5,1];ylabel = "T₂ map : axial",titlesize,ylabelsize,aspect=128/96)
+heatmap!(ax,circshift(reverse(fit_und[3][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax,label=false)
+ax = Axis(f[5,2],aspect=128/96)
+h=heatmap!(ax,circshift(reverse(fit_julia[3][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax)
+if(isfile(path_bart))
+    ax = Axis(f[5,3],aspect=128/96)
+    heatmap!(ax,circshift(reverse(fit_bart[3][:,:,2],dims=2),sl_c);colorrange,colormap)
+    hidedecorations!(ax)
+end
+Colorbar(f[5,4],h,label = "T₂ [ms]",labelrotation=-pi/2,labelsize=20,height=Relative(0.85))
+rowgap!(f.layout,4,-35)
 
 f
+end
 
 save("fig_bart_julia.png",f)
 save("fig_bart_julia.eps",f)
