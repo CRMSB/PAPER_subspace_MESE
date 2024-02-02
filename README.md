@@ -13,6 +13,10 @@ The reconstruction can be performed using MRIReco.jl (or BART for comparison pur
 - mono-exponential dictionary
 - EPG dictionary
 
+## Bruker sequence and protocol
+
+The accelerated 3D MESE MR sequence and the corresponding protocol for fully-sampled / CS6 / CS8 and CS10 acquisitions, as used in the publication, are available in the folder `MR sequence`
+
 ## Julia Installation
 
 To use the code, we recommend downloading Julia version 1.9.3 with `juliaup`.
