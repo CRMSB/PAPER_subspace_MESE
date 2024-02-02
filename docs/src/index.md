@@ -4,7 +4,7 @@ CurrentModule = Subspace_MESE
 
 # Subspace_MESE
 
-Documentation for the [Subspace_MESE](https://github.com/aTrotier/Subspace_MESE.jl) package, which implements the necessary functions to convert and reconstruct an accelerated 3D Multi-Echo Spin-Echo sequence with a subspace reconstruction in order to generate **T2** maps.
+Documentation for the [Subspace_MESE](https://github.com/aTrotier/PAPER_subspace_MESE) package, which implements the necessary functions to convert and reconstruct an accelerated 3D Multi-Echo Spin-Echo sequence with a subspace reconstruction in order to generate **T2** maps.
 
 
 ## Bruker Acquisition
