@@ -89,14 +89,13 @@ juliaup default 1.9.3
 
 ## MESE Package Installation
 
-- Download the current repository : `git clone https://github.com/aTrotier/PAPER_subspace_MESE`
-- Open a new terminal and move to the folder `PAPER_subspace_MESE`
+You can install the package in any project with the following command :
+
 - launch julia with the command `julia`
 - enter the Julia package manager by typing `]` in the REPL. (the REPL should turn in blue)
-- Type : 
-`dev .`
-- if you want to use the package you can now type in any julia session : `using Subspace_MESE`
-- close the terminal
+- if you want to activate an environment, type : `activate .` (otherwise the package will be installed in the global environment)
+- In order to add our unregistered package, type `add https://github.com/aTrotier/PAPER_subspace_MESE`
+- if you want to use the package : `using Subspace_MESE`
 
 ## Reproducing figure 8
 In order to reproduce figure 8, you need to :
@@ -111,10 +110,11 @@ In order to reproduce figure 8, you need to :
 - run the literate example :
   ```julia
   using Pkg
+  Pkg.add(url="https://github.com/aTrotier/PAPER_subspace_MESE")
   Pkg.instantiate()
   include("lit/examples/subspace_julia_epg.jl")
   ```
-The figure will be saved as `fig_bart_julia` in the `docs` folder.
+The figure will be saved as `fig_bart_julia.png` in the `docs` folder.
 
 
 
