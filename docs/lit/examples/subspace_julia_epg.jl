@@ -9,7 +9,7 @@
 # 
 # ![Reconstruction Pipeline](../../img/fig_bart_julia.png)
 #
-# To do so you need to edit `path_raw` to the bruker dataset available [here](https://zenodo.org/records/10514187) 
+# To do so you need to edit `path_raw` to the bruker dataset available [here](https://zenodo.org/records/10610639) 
 # and you need to compile BART and edit the `path_bart` to the compiled bart library
 
 # ## Setup and define global variable
