@@ -90,27 +90,29 @@ juliaup default 1.9.3
 ## MESE Package Installation
 
 - Download the current repository : `git clone https://github.com/aTrotier/PAPER_subspace_MESE`
-- move your terminal to the repository and launch julia `julia -t auto --project`
+- Open a new terminal and move to the folder `PAPER_subspace_MESE`
+- launch julia with the command `julia`
 - enter the Julia package manager by typing `]` in the REPL. (the REPL should turn in blue)
 - Type : 
 `dev .`
 - if you want to use the package you can now type in any julia session : `using Subspace_MESE`
+- close the terminal
 
 ## Reproducing figure 8
 In order to reproduce figure 8, you need to :
-- compile the BART toolbox : https://mrirecon.github.io/bart/ (you can skip this step if you don't want to plot the BART reconstruction)
-- download the dataset : https://zenodo.org/records/10514187?preview=1
+- compile the BART toolbox : https://mrirecon.github.io/bart/ (you can skip this step if you don't want to plot the BART reconstruction). After compilation/installation you can check the library path with `which bart`
+- download the dataset : https://zenodo.org/records/10514187 and extract the zip file.
 - download the current repository : `git clone https://github.com/aTrotier/PAPER_subspace_MESE`
 - Open a terminal and move to the docs folder in this repository
 - edit the script in `docs/lit/example/subspace_julia_epg.jl` and put the correct path in the variable 
-  - `path_raw` should point to the bruker folder `10`
-  - `path_bart` should point to the compiled bart library
+  - line 27 : `path_raw` should point to the bruker folder `10`
+  - line 30 : `path_bart` should point to the compiled bart library
 - launch julia in the docs folder with this command in the terminal: `julia --project -t auto`
 - run the literate example :
   ```julia
   using Pkg
   Pkg.instantiate()
-  include("lit/example/subspace_julia_epg.jl")
+  include("lit/examples/subspace_julia_epg.jl")
   ```
 The figure will be saved as `fig_bart_julia` in the `docs` folder.
 

@@ -12,7 +12,7 @@ DocMeta.setdocmeta!(Subspace_MESE, :DocTestSetup, :(using Subspace_MESE); recurs
 makedocs(;
     modules=[Subspace_MESE],
     authors="aTrotier <a.trotier@gmail.com> and contributors",
-    repo="https://github.com/aTrotier/Subspace_MESE.jl/blob/{commit}{path}#{line}",
+    repo="https://github.com/aTrotier/PAPER_subspace_MESE/blob/{commit}{path}#{line}",
     sitename="Subspace_MESE.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
