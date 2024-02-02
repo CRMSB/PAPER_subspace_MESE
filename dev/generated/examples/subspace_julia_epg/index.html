@@ -53,47 +53,56 @@ bart()</code></pre><pre><code class="language-julia hljs">if isfile(path_bart)
 end;
 nothing #hide</code></pre><h2 id="Fit-the-data-to-obtain-T-maps"><a class="docs-heading-anchor" href="#Fit-the-data-to-obtain-T-maps">Fit the data to obtain T₂ maps</a><a id="Fit-the-data-to-obtain-T-maps-1"></a><a class="docs-heading-anchor-permalink" href="#Fit-the-data-to-obtain-T-maps" title="Permalink"></a></h2><pre><code class="language-julia hljs">TE_vec = Float32.(LinRange(TE,TE*ETL,ETL))
 
-fit_und= Subspace_MESE.T2Fit_exp_noise(abs.(im_u_sos[:,:,slice_to_show,:,1,1]),TE_vec;removePoint=true,L=4)
-fit_julia = Subspace_MESE.T2Fit_exp_noise(abs.(im_TE_julia[:,:,slice_to_show,:,1,1]),TE_vec;removePoint=true,L=4)
-if isfile(path_bart)
-    fit_bart = Subspace_MESE.T2Fit_exp_noise(abs.(im_TE_bart[:,:,slice_to_show,1,1,:]),TE_vec;removePoint=true,L=4)
-end;
-nothing #hide</code></pre><h2 id="Generating-article-figure-8"><a class="docs-heading-anchor" href="#Generating-article-figure-8">Generating article figure 8</a><a id="Generating-article-figure-8-1"></a><a class="docs-heading-anchor-permalink" href="#Generating-article-figure-8" title="Permalink"></a></h2><pre><code class="language-julia hljs">using CairoMakie.Makie.MakieCore
+sl = Tuple[]
+push!(sl,(:,:,slice_to_show))
+push!(sl,(:,65,:))
+push!(sl,(65,:,:))
 
+fit_und = Any[]
+fit_julia = Any[]
+fit_bart = Any[]
+for i in eachindex(sl)
+    push!(fit_und,Subspace_MESE.T2Fit_exp_noise(abs.(im_u_sos[sl[i]...,:,1,1]),TE_vec;removePoint=true,L=4))
+    push!(fit_julia,Subspace_MESE.T2Fit_exp_noise(abs.(im_TE_julia[sl[i]...,:,1,1]),TE_vec;removePoint=true,L=4))
+    if isfile(path_bart)
+        push!(fit_bart,Subspace_MESE.T2Fit_exp_noise(abs.(im_TE_bart[sl[i]...,1,1,:]),TE_vec;removePoint=true,L=4))
+    end;
+end</code></pre><h2 id="Generating-article-figure-8"><a class="docs-heading-anchor" href="#Generating-article-figure-8">Generating article figure 8</a><a id="Generating-article-figure-8-1"></a><a class="docs-heading-anchor-permalink" href="#Generating-article-figure-8" title="Permalink"></a></h2><pre><code class="language-julia hljs">using CairoMakie.Makie.MakieCore
+begin
 titlesize=20
 ylabelsize=20
 aspect = DataAspect()
 
-f=Figure(size=(1200,1000))
+f=Figure(size=(1200,1600))
 #plot echo 1
 colorrange=MakieCore.Automatic()
 colormap=:grays
 
 ax = Axis(f[1,1];title=&quot;FFT\n &quot;,ylabel = &quot;Echo n°1\nTE = 7 ms&quot;,titlesize,ylabelsize)
-heatmap!(ax,im_u_sos[:,:,slice_to_show,1,1,1];colorrange,colormap)
+heatmap!(ax,circshift(im_u_sos[:,:,slice_to_show,1,1,1],(0,-10));colorrange,colormap)
 hidedecorations!(ax,label=false)
 ax = Axis(f[1,2];title=&quot;MRIReco\nW=0.03&quot;,titlesize)
-heatmap!(ax,im_TE_julia[:,:,slice_to_show,1,1,1];colorrange,colormap)
+heatmap!(ax,circshift(im_TE_julia[:,:,slice_to_show,1,1,1],(0,-10));colorrange,colormap)
 hidedecorations!(ax)
 
 if(isfile(path_bart))
     ax = Axis(f[1,3];title=&quot;BART\nW=0.0025&quot;,titlesize)
-    heatmap!(ax,abs.(im_TE_bart[:,:,slice_to_show,1,1,1]);colorrange,colormap)
+    heatmap!(ax,circshift(abs.(im_TE_bart[:,:,slice_to_show,1,1,1]),(0,-10));colorrange,colormap)
     hidedecorations!(ax)
 end
 
 #plot echo 10
 
 ax = Axis(f[2,1];ylabel = &quot;Echo n°10\nTE = 70 ms&quot;,titlesize,ylabelsize)
-heatmap!(ax,im_u_sos[:,:,slice_to_show,10,1,1];colorrange,colormap)
+heatmap!(ax,circshift(im_u_sos[:,:,slice_to_show,10,1,1],(0,-10));colorrange,colormap)
 hidedecorations!(ax,label=false)
 ax = Axis(f[2,2];titlesize)
-heatmap!(ax,im_TE_julia[:,:,slice_to_show,10,1,1];colorrange,colormap)
+heatmap!(ax,circshift(im_TE_julia[:,:,slice_to_show,10,1,1],(0,-10));colorrange,colormap)
 hidedecorations!(ax)
 
 if(isfile(path_bart))
     ax = Axis(f[2,3];titlesize)
-    heatmap!(ax,abs.(im_TE_bart[:,:,slice_to_show,1,1,10]);colorrange,colormap)
+    heatmap!(ax,circshift(abs.(im_TE_bart[:,:,slice_to_show,1,1,10]),(0,-10));colorrange,colormap)
     hidedecorations!(ax)
 end
 
@@ -101,22 +110,55 @@ end
 colorrange=(0,150)
 colormap=:magma
 
-ax = Axis(f[3,1];ylabel = &quot;T₂ map&quot;,titlesize,ylabelsize)
-heatmap!(ax,fit_und[:,:,2];colorrange,colormap)
+ax = Axis(f[3,1];ylabel = &quot;T₂ map: coronal&quot;,titlesize,ylabelsize)
+heatmap!(ax,circshift(fit_und[1][:,:,2],(0,-10));colorrange,colormap)
 hidedecorations!(ax,label=false)
 ax = Axis(f[3,2])
-h=heatmap!(ax,fit_julia[:,:,2];colorrange,colormap)
+h=heatmap!(ax,circshift(fit_julia[1][:,:,2],(0,-10));colorrange,colormap)
 hidedecorations!(ax)
 if(isfile(path_bart))
     ax = Axis(f[3,3])
-    heatmap!(ax,fit_bart[:,:,2];colorrange,colormap)
+    heatmap!(ax,circshift(fit_bart[1][:,:,2],(0,-10));colorrange,colormap)
     hidedecorations!(ax)
 end
+Colorbar(f[3,4],h,label = &quot;T₂ [ms]&quot;,labelrotation=-pi/2,labelsize=20)
+#rowgap!(f.layout,3,10)
 
-Colorbar(f[3,end+1],h,label = &quot;T₂ [ms]&quot;,labelrotation=-pi/2,labelsize=20)
+#plot T2 sag
+sl_c = (0,20)
+ax = Axis(f[4,1];ylabel = &quot;T₂ map: sagittal&quot;,titlesize,ylabelsize,aspect=128/96)
+heatmap!(ax,circshift(reverse(fit_und[2][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax,label=false)
+ax = Axis(f[4,2],aspect=128/96)
+h=heatmap!(ax,circshift(reverse(fit_julia[2][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax)
+if(isfile(path_bart))
+    ax = Axis(f[4,3],aspect=128/96)
+    heatmap!(ax,circshift(reverse(fit_bart[2][:,:,2],dims=2),sl_c);colorrange,colormap)
+    hidedecorations!(ax)
+end
+Colorbar(f[4,4],h,label = &quot;T₂ [ms]&quot;,labelrotation=-pi/2,labelsize=20,height=Relative(0.85))
+rowgap!(f.layout,3,-10)
+
+#plot T2 axial
+sl_c = (-10,20)
+ax = Axis(f[5,1];ylabel = &quot;T₂ map : axial&quot;,titlesize,ylabelsize,aspect=128/96)
+heatmap!(ax,circshift(reverse(fit_und[3][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax,label=false)
+ax = Axis(f[5,2],aspect=128/96)
+h=heatmap!(ax,circshift(reverse(fit_julia[3][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax)
+if(isfile(path_bart))
+    ax = Axis(f[5,3],aspect=128/96)
+    heatmap!(ax,circshift(reverse(fit_bart[3][:,:,2],dims=2),sl_c);colorrange,colormap)
+    hidedecorations!(ax)
+end
+Colorbar(f[5,4],h,label = &quot;T₂ [ms]&quot;,labelrotation=-pi/2,labelsize=20,height=Relative(0.85))
+rowgap!(f.layout,4,-35)
 
 f
+end
 
 save(&quot;fig_bart_julia.png&quot;,f)
 save(&quot;fig_bart_julia.eps&quot;,f)
-save(&quot;fig_bart_julia.pdf&quot;,f)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../../fit_T2/">« T₂ mapping</a><a class="docs-footer-nextpage" href="../../../api/">API »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.2.1 on <span class="colophon-date" title="Wednesday 24 January 2024 10:55">Wednesday 24 January 2024</span>. Using Julia version 1.10.0.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+save(&quot;fig_bart_julia.pdf&quot;,f)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../../fit_T2/">« T₂ mapping</a><a class="docs-footer-nextpage" href="../../../api/">API »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.2.1 on <span class="colophon-date" title="Friday 2 February 2024 09:21">Friday 2 February 2024</span>. Using Julia version 1.10.0.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
