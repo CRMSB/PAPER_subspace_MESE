@@ -88,17 +88,32 @@ juliaup default 1.9.3
 </details>
 
 ## MESE Package Installation
-To install this package, enter the Julia package manager by typing `]` in the REPL and then calling the command:
 
-`add https://github.com/atrotier/Subspace_MESE.jl`
+- Download the current repository : `git clone https://github.com/aTrotier/PAPER_subspace_MESE`
+- move your terminal to the repository and launch julia `julia -t auto --project`
+- enter the Julia package manager by typing `]` in the REPL and then calling the command:
+`dev .`
+- if you want to use the package you can now type in any julia session : `using Subspace_MESE`
 
-## An example is available
+## Reproducing the figure
+In order to reproduce the last figure, you need to :
+- compile the BART toolbox (you can skip this step if you don't want to plot the BART reconstruction)
+- download the dataset : https://zenodo.org/records/10514187?preview=1
+- download the current repository and move your terminal in the docs folder
+- edit the script in `docs/lit/example/subspace_julia_epg.jl` and put the correct path in the variable `path_raw` and `path_bart`
+- launch julia `julia --project -t auto`
+- run the literate example :
+  ```julia
+  using Pkg
+  Pkg.instantiate()
+  include("lit/example/subspace_julia_epg.jl")
+  ```
+The figure will be saved in the `docs` folder
 
-For more details, please refer to the paper and the above linked documentation.
 
 
 [docs-img]: https://img.shields.io/badge/docs-latest%20release-blue.svg
-[docs-url]: https://atrotier.github.io/Subspace_MESE.jl
+[docs-url]: https://atrotier.github.io/PAPER_subspace_MESE/dev/
 
 [paper-img]: https://img.shields.io/badge/doi-10.1002/mrm.29945-blue.svg
 [paper-url]: https://doi.org/10.1002/mrm.???

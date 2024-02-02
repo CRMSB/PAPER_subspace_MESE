@@ -32,6 +32,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/aTrotier/Subspace_MESE.jl",
+    repo="github.com/aTrotier/PAPER_subspace_MESE",
     devbranch="main",
 )
