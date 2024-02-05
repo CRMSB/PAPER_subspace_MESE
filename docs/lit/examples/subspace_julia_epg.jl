@@ -8,11 +8,28 @@
 # This script is also used to generate the last figure of the article.
 # 
 # ![Reconstruction Pipeline](../../img/fig_bart_julia.png)
-#
-# To do so you need to edit `path_raw` to the bruker dataset available [here](https://zenodo.org/records/10610639) 
-# and you need to compile BART and edit the `path_bart` to the compiled bart library
 
-# ## Setup and define global variable
+# ## Reproducibility setup
+#
+# In order to reproduce figure 8, you need to :
+# - compile the BART toolbox : https://mrirecon.github.io/bart/ (you can skip this step if you don't want to plot the BART reconstruction). After compilation/installation you can check the library path with `which bart`
+# - download the dataset : https://zenodo.org/records/10610639 and extract the zip file.
+# - download the current repository : `git clone https://github.com/aTrotier/PAPER_subspace_MESE`
+# - Open a terminal and move to the docs folder in this repository
+# - edit the script in `docs/lit/example/subspace_julia_epg.jl` and put the correct path in the variable 
+#   - line 46 : `path_raw` should point to the bruker folder `10`
+#   - line 49 : `path_bart` should point to the compiled bart library
+# - launch julia in the docs folder with this command in the terminal: `julia --project -t auto`
+# - run the literate example :
+#   ```julia
+#   using Pkg
+#   Pkg.add(url="https://github.com/aTrotier/PAPER_subspace_MESE")
+#   Pkg.instantiate()
+#   include("lit/examples/subspace_julia_epg.jl")
+#   ```
+# The figure will be saved as `fig_bart_julia.png` in the `docs` folder.
+
+# ## Load package
 using Subspace_MESE
 using Subspace_MESE.MRIFiles
 using Subspace_MESE.MRIReco

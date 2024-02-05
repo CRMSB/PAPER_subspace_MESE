@@ -13,6 +13,8 @@ The reconstruction can be performed using MRIReco.jl (or BART for comparison pur
 - mono-exponential dictionary
 - EPG dictionary
 
+More information and examples are available in the article [![][paper-img] and in the  [![][docs-img]][docs-url]
+
 ## Bruker sequence and protocol
 
 The accelerated 3D MESE MR sequence and the corresponding protocol for fully-sampled / CS6 / CS8 and CS10 acquisitions, as used in the publication, are available in the folder `MR sequence`
@@ -108,8 +110,8 @@ In order to reproduce figure 8, you need to :
 - download the current repository : `git clone https://github.com/aTrotier/PAPER_subspace_MESE`
 - Open a terminal and move to the docs folder in this repository
 - edit the script in `docs/lit/example/subspace_julia_epg.jl` and put the correct path in the variable 
-  - line 27 : `path_raw` should point to the bruker folder `10`
-  - line 30 : `path_bart` should point to the compiled bart library
+  - line 46 : `path_raw` should point to the bruker folder `10`
+  - line 49 : `path_bart` should point to the compiled bart library
 - launch julia in the docs folder with this command in the terminal: `julia --project -t auto`
 - run the literate example :
   ```julia
