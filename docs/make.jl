@@ -22,7 +22,7 @@ makedocs(;
     ),
     pages=[
         "Home" => "index.md",
-        "Installation" =>"installation.md"
+        "Installation" =>"installation.md",
         "Convert data" => "convert.md",
         "Subspace generation" => "building_basis.md",
         "Subspace Reconstruction" => "reconstruction_subspace.md",
