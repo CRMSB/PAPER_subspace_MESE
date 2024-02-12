@@ -28,4 +28,4 @@ Those steps are described in their dedicated sections.
 
 # Example
 
-Reproduction of figure 8 can be performed at this link : https://atrotier.github.io/PAPER_subspace_MESE/dev/generated/examples/subspace_julia_epg/
+Reproduction of figure 8 can be performed at this [link](https://atrotier.github.io/PAPER_subspace_MESE/dev/generated/examples/subspace_julia_epg/)
