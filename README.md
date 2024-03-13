@@ -103,25 +103,42 @@ You can install the package in any project with the following command :
 - In order to add our unregistered package, type `add https://github.com/aTrotier/PAPER_subspace_MESE`
 - if you want to use the package : `using Subspace_MESE`
 
+**Additional steps due to issue** https://github.com/aTrotier/PAPER_subspace_MESE/issues/5
+- add a specific version of the package LinearOperatorCollection package : 
+```julia
+using Pkg
+Pkg.add(name="LinearOperatorCollection", version="1.1.2")
+```
+
 ## Reproducing figure 8
-In order to reproduce figure 8, you need to :
+In order to reproduce figure 8, we will run a script from the `docs` project environment which add the dependency to the plotting package `CairoMakie`.
+This folder contains the `Project.toml` and `Manifest.toml` that list all the dependencies and the version used to produce the figure. If you want to use newer 
+
+### Steps
+In order to run the example you need to :
 - compile the BART toolbox : https://mrirecon.github.io/bart/ (you can skip this step if you don't want to plot the BART reconstruction). After compilation/installation you can check the library path with `which bart`
 - download the dataset : https://zenodo.org/records/10610639 and extract the zip file.
 - download the current repository : `git clone https://github.com/aTrotier/PAPER_subspace_MESE`
-- Open a terminal and move to the docs folder in this repository
+- Open a terminal and move to the `docs` folder in this repository and launch julia with this command in the terminal: `julia --project -t auto`
 - edit the script in `docs/lit/example/subspace_julia_epg.jl` and put the correct path in the variable 
   - line 46 : `path_raw` should point to the bruker folder `10`
-  - line 49 : `path_bart` should point to the compiled bart library
-- launch julia in the docs folder with this command in the terminal: `julia --project -t auto`
-- run the literate example :
+  - line 49 : `path_bart` should point to the compiled bart library 
+- run the literate example **(a fix for LinearOperatorCollection has been added and will be removed later issue https://github.com/aTrotier/PAPER_subspace_MESE/issues/5)**:
   ```julia
   using Pkg
   Pkg.add(url="https://github.com/aTrotier/PAPER_subspace_MESE")
+  Pkg.add(name="LinearOperatorCollection", version="1.1.2")
   Pkg.instantiate()
   include("lit/examples/subspace_julia_epg.jl")
   ```
 The figure will be saved as `fig_bart_julia.png` in the `docs` folder.
 
+### Note
+If you obtain the error : 
+```julia
+LoadError: ArgumentError: Package CairoMakie not found in current path
+```
+You might not have launch the script from the right environment. You should first move to the `docs` folder before launching `julia --project -t auto` in order to use the Project.toml that includes `CairoMakie.jl` package.
 
 
 [docs-img]: https://img.shields.io/badge/docs-latest%20release-blue.svg
