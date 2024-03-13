@@ -2,7 +2,7 @@
 
 julia_version = "1.9.4"
 manifest_format = "2.0"
-project_hash = "e571d228757b49f70f03b7fb192617c13c2fc999"
+project_hash = "4e90fb5e21f93d3c968390c8a795a2f903853380"
 
 [[deps.AMD]]
 deps = ["LinearAlgebra", "SparseArrays", "SuiteSparse_jll"]
@@ -1810,9 +1810,9 @@ version = "0.6.18"
     StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
 
 [[deps.Subspace_MESE]]
-deps = ["BartIO", "EPGsim", "FFTW", "LinearAlgebra", "LinearOperatorCollection", "LsqFit", "MRICoilSensitivities", "MRIFiles", "MRIReco"]
-git-tree-sha1 = "184a41a23af05e2c5ea277ab851cae65a81a8a59"
-repo-rev = "main"
+deps = ["BartIO", "EPGsim", "FFTW", "LinearAlgebra", "LsqFit", "MRICoilSensitivities", "MRIFiles", "MRIReco"]
+git-tree-sha1 = "e8bbc9f2a078dc2444c2ee5a933d34dcabc5cfb8"
+repo-rev = "v1.0.0"
 repo-url = "https://github.com/aTrotier/PAPER_subspace_MESE"
 uuid = "03ee4b65-1735-4169-82da-5df6ad43f66c"
 version = "1.0.0"

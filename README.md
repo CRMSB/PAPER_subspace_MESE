@@ -103,13 +103,6 @@ You can install the package in any project with the following command :
 - In order to add our unregistered package, type `add https://github.com/aTrotier/PAPER_subspace_MESE`
 - if you want to use the package : `using Subspace_MESE`
 
-**Additional steps due to issue** https://github.com/aTrotier/PAPER_subspace_MESE/issues/5
-- add a specific version of the package LinearOperatorCollection package : 
-```julia
-using Pkg
-Pkg.add(name="LinearOperatorCollection", version="1.1.2")
-```
-
 ## Reproducing figure 8
 In order to reproduce figure 8, we will run a script from the `docs` project environment which add the dependency to the plotting package `CairoMakie`.
 This folder contains the `Project.toml` and `Manifest.toml` that list all the dependencies and the version used to produce the figure. If you want to use newer 
@@ -123,14 +116,24 @@ In order to run the example you need to :
 - edit the script in `docs/lit/example/subspace_julia_epg.jl` and put the correct path in the variable 
   - line 46 : `path_raw` should point to the bruker folder `10`
   - line 49 : `path_bart` should point to the compiled bart library 
-- run the literate example **(a fix for LinearOperatorCollection has been added and will be removed later issue https://github.com/aTrotier/PAPER_subspace_MESE/issues/5)**:
+- run the literate example using the Manifest.toml files that stores the version of all the packages used to generate the figure 
   ```julia
   using Pkg
-  Pkg.add(url="https://github.com/aTrotier/PAPER_subspace_MESE")
-  Pkg.add(name="LinearOperatorCollection", version="1.1.2")
   Pkg.instantiate()
   include("lit/examples/subspace_julia_epg.jl")
   ```
+
+If you want to start from a fresh environment you need to add the correct version of this repository as well as the plotting library `CairoMakie.jl` (put the correct path to the script `subspace_julia_epg.jl` if you are not in the `docs` folder)
+
+  ```julia
+  using Pkg
+
+  Pkg.add(url="https://github.com/aTrotier/PAPER_subspace_MESE",rev="1.0.1")
+  Pkg.add(name="CairoMakie", version="0.11.3")
+  Pkg.instantiate()
+  include("lit/examples/subspace_julia_epg.jl")
+  ```
+
 The figure will be saved as `fig_bart_julia.png` in the `docs` folder.
 
 ### Note
