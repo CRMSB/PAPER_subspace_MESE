@@ -13,7 +13,13 @@ The reconstruction can be performed using MRIReco.jl (or BART for comparison pur
 - mono-exponential dictionary
 - EPG dictionary
 
-More information and examples are available in the article [![][paper-img] and in the  [![][docs-img]][docs-url]
+More information and examples are available in the article ![][paper-img] and in the  [![][docs-img]][docs-url]
+
+## How to give credit
+
+If you use this package please acknowledge us by cite us : https://doi.org/10.1002/mrm.30146
+
+Additionally, if you use the sequence available in the MR sequence folder, please contact us to sign the sequence transfer agreement : aurelien.trotier@rmsb.u-bordeaux.fr
 
 ## Bruker sequence and protocol
 
@@ -100,7 +106,7 @@ You can install the package in any project with the following command :
 - launch julia with the command `julia`
 - enter the Julia package manager by typing `]` in the REPL. (the REPL should turn in blue)
 - if you want to activate an environment, type : `activate .` (otherwise the package will be installed in the global environment)
-- In order to add our unregistered package, type `add https://github.com/aTrotier/PAPER_subspace_MESE`
+- In order to add our unregistered package, type `add https://github.com/CRMSB/PAPER_subspace_MESE`
 - if you want to use the package : `using Subspace_MESE`
 
 ## Reproducing figure 8
@@ -111,7 +117,7 @@ This folder contains the `Project.toml` and `Manifest.toml` that list all the de
 In order to run the example you need to :
 - compile the BART toolbox : https://mrirecon.github.io/bart/ (you can skip this step if you don't want to plot the BART reconstruction). After compilation/installation you can check the library path with `which bart`
 - download the dataset : https://zenodo.org/records/10610639 and extract the zip file.
-- download the current repository : `git clone https://github.com/aTrotier/PAPER_subspace_MESE`
+- download the current repository : `git clone https://github.com/CRMSB/PAPER_subspace_MESE`
 - Open a terminal and move to the `docs` folder in this repository and launch julia with this command in the terminal: `julia --project -t auto`
 - edit the script in `docs/lit/example/subspace_julia_epg.jl` and put the correct path in the variable 
   - line 46 : `path_raw` should point to the bruker folder `10`
@@ -128,7 +134,7 @@ If you want to start from a fresh environment you need to add the correct versio
   ```julia
   using Pkg
 
-  Pkg.add(url="https://github.com/aTrotier/PAPER_subspace_MESE",rev="1.0.1")
+  Pkg.add(url="https://github.com/CRMSB/PAPER_subspace_MESE",rev="1.0.1")
   Pkg.add(name="CairoMakie", version="0.11.3")
   Pkg.instantiate()
   include("lit/examples/subspace_julia_epg.jl")
@@ -145,7 +151,7 @@ You might not have launch the script from the right environment. You should firs
 
 
 [docs-img]: https://img.shields.io/badge/docs-latest%20release-blue.svg
-[docs-url]: https://atrotier.github.io/PAPER_subspace_MESE/dev/
+[docs-url]: https://crmsb.github.io/PAPER_subspace_MESE/stable/
 
-[paper-img]: https://img.shields.io/badge/doi-10.1002/mrm.29945-blue.svg
-[paper-url]: https://doi.org/10.1002/mrm.???
+[paper-img]: https://img.shields.io/badge/doi-10.1002/mrm.30146-blue.svg
+[paper-url]: https://doi.org/10.1002/mrm.30146

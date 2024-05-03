@@ -4,8 +4,13 @@ CurrentModule = Subspace_MESE
 
 # Subspace_MESE
 
-Documentation for the [Subspace_MESE](https://github.com/aTrotier/PAPER_subspace_MESE) package, which implements the necessary functions to convert and reconstruct an accelerated 3D Multi-Echo Spin-Echo sequence with a subspace reconstruction in order to generate **T2** maps.
+Documentation for the [Subspace_MESE](https://github.com/CRMSB/PAPER_subspace_MESE) package, which implements the necessary functions to convert and reconstruct an accelerated 3D Multi-Echo Spin-Echo sequence with a subspace reconstruction in order to generate **T2** maps.
 
+## How to give credit
+
+If you use this package please acknowledge us by cite us : https://doi.org/10.1002/mrm.30146
+
+Additionally, if you use the sequence available in the MR sequence folder, please contact us to sign the sequence transfer agreement : aurelien.trotier@rmsb.u-bordeaux.fr
 
 ## Bruker Acquisition
 
@@ -28,4 +33,4 @@ Those steps are described in their dedicated sections.
 
 # Example
 
-Reproduction of figure 8 can be performed at this [link](https://atrotier.github.io/PAPER_subspace_MESE/dev/generated/examples/subspace_julia_epg/)
+Reproduction of figure 8 can be performed at this [link](https://CRMSB.github.io/PAPER_subspace_MESE/dev/generated/examples/subspace_julia_epg/)

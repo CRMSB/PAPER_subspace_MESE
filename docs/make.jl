@@ -12,11 +12,11 @@ DocMeta.setdocmeta!(Subspace_MESE, :DocTestSetup, :(using Subspace_MESE); recurs
 makedocs(;
     modules=[Subspace_MESE],
     authors="aTrotier <a.trotier@gmail.com> and contributors",
-    repo="https://github.com/aTrotier/PAPER_subspace_MESE/blob/{commit}{path}#{line}",
+    repo="https://github.com/CRMSB/PAPER_subspace_MESE/blob/{commit}{path}#{line}",
     sitename="Subspace_MESE.jl",
     format=Documenter.HTML(;
         prettyurls=get(ENV, "CI", "false") == "true",
-        canonical="https://aTrotier.github.io/Subspace_MESE.jl",
+        canonical="https://CRMSB.github.io/Subspace_MESE.jl",
         edit_link="main",
         assets=String[],
     ),
@@ -33,6 +33,6 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/aTrotier/PAPER_subspace_MESE",
+    repo="github.com/CRMSB/PAPER_subspace_MESE",
     devbranch="main",
 )
