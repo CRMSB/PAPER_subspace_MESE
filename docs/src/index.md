@@ -8,7 +8,7 @@ Documentation for the [Subspace_MESE](https://github.com/CRMSB/PAPER_subspace_ME
 
 ## How to give credit
 
-If you use this package please acknowledge us by cite us : https://doi.org/10.1002/mrm.30146
+If you use this package please acknowledge us by citing : https://doi.org/10.1002/mrm.30146
 
 Additionally, if you use the sequence available in the MR sequence folder, please contact us to sign the sequence transfer agreement : aurelien.trotier@rmsb.u-bordeaux.fr
 
