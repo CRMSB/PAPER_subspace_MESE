@@ -151,7 +151,7 @@ You might not have launch the script from the right environment. You should firs
 
 
 [docs-img]: https://img.shields.io/badge/docs-latest%20release-blue.svg
-[docs-url]: https://crmsb.github.io/PAPER_subspace_MESE/stable/
+[docs-url]: https://crmsb.github.io/PAPER_subspace_MESE/dev/
 
 [paper-img]: https://img.shields.io/badge/doi-10.1002/mrm.30146-blue.svg
 [paper-url]: https://doi.org/10.1002/mrm.30146
