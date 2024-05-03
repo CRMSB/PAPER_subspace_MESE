@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Generate figure 8 · Subspace_MESE.jl</title><meta name="title" content="Generate figure 8 · Subspace_MESE.jl"/><meta property="og:title" content="Generate figure 8 · Subspace_MESE.jl"/><meta property="twitter:title" content="Generate figure 8 · Subspace_MESE.jl"/><meta name="description" content="Documentation for Subspace_MESE.jl."/><meta property="og:description" content="Documentation for Subspace_MESE.jl."/><meta property="twitter:description" content="Documentation for Subspace_MESE.jl."/><meta property="og:url" content="https://CRMSB.github.io/Subspace_MESE.jl/generated/examples/subspace_julia_epg/"/><meta property="twitter:url" content="https://CRMSB.github.io/Subspace_MESE.jl/generated/examples/subspace_julia_epg/"/><link rel="canonical" href="https://CRMSB.github.io/Subspace_MESE.jl/generated/examples/subspace_julia_epg/"/><script data-outdated-warner src="../../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../../assets/documenter.js"></script><script src="../../../search_index.js"></script><script src="../../../siteinfo.js"></script><script src="../../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../../assets/themeswap.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="../../../">Subspace_MESE.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../../">Home</a></li><li><a class="tocitem" href="../../../installation/">Installation</a></li><li><a class="tocitem" href="../../../convert/">Convert data</a></li><li><a class="tocitem" href="../../../building_basis/">Subspace generation</a></li><li><a class="tocitem" href="../../../reconstruction_subspace/">Subspace Reconstruction</a></li><li><a class="tocitem" href="../../../fit_T2/">T₂ mapping</a></li><li><span class="tocitem">Examples</span><ul><li class="is-active"><a class="tocitem" href>Generate figure 8</a><ul class="internal"><li><a class="tocitem" href="#Description"><span>Description</span></a></li><li><a class="tocitem" href="#Reproducibility-setup"><span>Reproducibility setup</span></a></li><li><a class="tocitem" href="#Load-package"><span>Load package</span></a></li><li><a class="tocitem" href="#Define-paths"><span>Define paths</span></a></li><li><a class="tocitem" href="#Load-and-convert-the-bruker-dataset-into-an-AcquisitionData-object"><span>Load and convert the bruker dataset into an AcquisitionData object</span></a></li><li><a class="tocitem" href="#Estimate-the-coil-sensitivity-map-with-espirit"><span>Estimate the coil sensitivity map with espirit</span></a></li><li><a class="tocitem" href="#Direct-reconstruction-of-undersampled-acquisition"><span>Direct reconstruction of undersampled acquisition</span></a></li><li><a class="tocitem" href="#Subspace-generation-with-the-EPG-simulation"><span>Subspace generation with the EPG simulation</span></a></li><li><a class="tocitem" href="#Subspace-reconstruction-with-EPG-dictionary"><span>Subspace reconstruction with EPG dictionary</span></a></li><li><a class="tocitem" href="#BART-reconstruction"><span>BART reconstruction</span></a></li><li><a class="tocitem" href="#Fitting-of-the-data-to-obtain-T-maps"><span>Fitting of the data to obtain T₂ maps</span></a></li><li><a class="tocitem" href="#Visualization-of-the-article-figure-8"><span>Visualization of the article figure 8</span></a></li></ul></li></ul></li><li><a class="tocitem" href="../../../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Examples</a></li><li class="is-active"><a href>Generate figure 8</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Generate figure 8</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/CRMSB/PAPER_subspace_MESE/blob/main/docs/lit/examples/subspace_julia_epg.jl#" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="03-subspaceReconstruction"><a class="docs-heading-anchor" href="#03-subspaceReconstruction">Generate figure 8</a><a id="03-subspaceReconstruction-1"></a><a class="docs-heading-anchor-permalink" href="#03-subspaceReconstruction" title="Permalink"></a></h1><h2 id="Description"><a class="docs-heading-anchor" href="#Description">Description</a><a id="Description-1"></a><a class="docs-heading-anchor-permalink" href="#Description" title="Permalink"></a></h2><p>This example describes how to perform a subspace reconstruction for <span>$T_2$</span> mapping. This script is also used to generate the last figure of the article.</p><p><img src="../../../img/fig_bart_julia.png" alt="Reconstruction Pipeline"/></p><h2 id="Reproducibility-setup"><a class="docs-heading-anchor" href="#Reproducibility-setup">Reproducibility setup</a><a id="Reproducibility-setup-1"></a><a class="docs-heading-anchor-permalink" href="#Reproducibility-setup" title="Permalink"></a></h2><p>In order to reproduce figure 8, you need to :</p><ul><li>compile the BART toolbox : https://mrirecon.github.io/bart/ (you can skip this step if you don&#39;t want to plot the BART reconstruction). After compilation/installation you can check the library path with <code>which bart</code></li><li>download the dataset : https://zenodo.org/records/10610639 and extract the zip file.</li><li>download the current repository : <code>git clone https://github.com/CRMSB/PAPER_subspace_MESE</code></li><li>Open a terminal and move to the docs folder in this repository</li><li>edit the script in <code>docs/lit/example/subspace_julia_epg.jl</code> and put the correct path in the variable<ul><li>line 46 : <code>path_raw</code> should point to the bruker folder <code>10</code></li><li>line 49 : <code>path_bart</code> should point to the compiled bart library</li></ul></li><li>launch julia in the docs folder with this command in the terminal: <code>julia --project -t auto</code></li><li>run the literate example :<pre><code class="language-julia hljs">using Pkg
+Pkg.add(url=&quot;https://github.com/CRMSB/PAPER_subspace_MESE&quot;)
+Pkg.instantiate()
+include(&quot;lit/examples/subspace_julia_epg.jl&quot;)</code></pre></li></ul><p>The figure will be saved as <code>fig_bart_julia.png</code> in the <code>docs</code> folder.</p><h2 id="Load-package"><a class="docs-heading-anchor" href="#Load-package">Load package</a><a id="Load-package-1"></a><a class="docs-heading-anchor-permalink" href="#Load-package" title="Permalink"></a></h2><pre><code class="language-julia hljs">using Subspace_MESE
+using Subspace_MESE.MRIFiles
+using Subspace_MESE.MRIReco
+using Subspace_MESE.MRICoilSensitivities
+using Subspace_MESE.LinearAlgebra
+using Subspace_MESE.FFTW
+using CairoMakie</code></pre><h2 id="Define-paths"><a class="docs-heading-anchor" href="#Define-paths">Define paths</a><a id="Define-paths-1"></a><a class="docs-heading-anchor-permalink" href="#Define-paths" title="Permalink"></a></h2><pre><code class="language-julia hljs">#to the raw dataset :
+
+path_raw = &quot;/workspace_QMRI/PROJECTS_DATA/2021_RECH_mcT2_Bruker/PROJ_JULIA_MSME_CS/data/exp_raw/mouse_patho/20230317_085834_AT_MSME_CS_44_1_1/10&quot;
+
+#and to the bart library :
+path_bart = &quot;/home/CODE/bart/bart&quot;
+
+slice_to_show = 55</code></pre><h2 id="Load-and-convert-the-bruker-dataset-into-an-AcquisitionData-object"><a class="docs-heading-anchor" href="#Load-and-convert-the-bruker-dataset-into-an-AcquisitionData-object">Load and convert the bruker dataset into an AcquisitionData object</a><a id="Load-and-convert-the-bruker-dataset-into-an-AcquisitionData-object-1"></a><a class="docs-heading-anchor-permalink" href="#Load-and-convert-the-bruker-dataset-into-an-AcquisitionData-object" title="Permalink"></a></h2><pre><code class="language-julia hljs">b = BrukerFile(path_raw)
+
+raw = RawAcquisitionData_MESE(b)
+acq = AcquisitionData(raw,OffsetBruker = true);
+nothing #hide</code></pre><h2 id="Estimate-the-coil-sensitivity-map-with-espirit"><a class="docs-heading-anchor" href="#Estimate-the-coil-sensitivity-map-with-espirit">Estimate the coil sensitivity map with espirit</a><a id="Estimate-the-coil-sensitivity-map-with-espirit-1"></a><a class="docs-heading-anchor-permalink" href="#Estimate-the-coil-sensitivity-map-with-espirit" title="Permalink"></a></h2><pre><code class="language-julia hljs">coilsens = espirit(acq,eigThresh_2=0.0);
+nothing #hide</code></pre><h2 id="Direct-reconstruction-of-undersampled-acquisition"><a class="docs-heading-anchor" href="#Direct-reconstruction-of-undersampled-acquisition">Direct reconstruction of undersampled acquisition</a><a id="Direct-reconstruction-of-undersampled-acquisition-1"></a><a class="docs-heading-anchor-permalink" href="#Direct-reconstruction-of-undersampled-acquisition" title="Permalink"></a></h2><pre><code class="language-julia hljs">params = Dict{Symbol,Any}()
+params[:reconSize] = acq.encodingSize
+params[:reco] = &quot;direct&quot;
+
+im_u = reconstruction(acq, params);
+im_u_sos = mergeChannels(im_u)
+
+heatmap(im_u_sos[:,:,55,15,1,1],colormap=:grays)</code></pre><h2 id="Subspace-generation-with-the-EPG-simulation"><a class="docs-heading-anchor" href="#Subspace-generation-with-the-EPG-simulation">Subspace generation with the EPG simulation</a><a id="Subspace-generation-with-the-EPG-simulation-1"></a><a class="docs-heading-anchor-permalink" href="#Subspace-generation-with-the-EPG-simulation" title="Permalink"></a></h2><pre><code class="language-julia hljs">B1_vec = 0.8:0.01:1.0
+T2_vec = 1.0:1.0:2000.0
+T1_vec = 1000.0
+TE = 7.0
+TR = 1000.0
+dummy=3
+ETL = 50
+NUM_BASIS = 6
+basis_epg,_= MESE_basis_EPG(NUM_BASIS,TE,ETL,T2_vec,B1_vec,T1_vec;TR=TR,dummy=dummy)
+lines(abs.(basis_epg[:,2]))</code></pre><h2 id="Subspace-reconstruction-with-EPG-dictionary"><a class="docs-heading-anchor" href="#Subspace-reconstruction-with-EPG-dictionary">Subspace reconstruction with EPG dictionary</a><a id="Subspace-reconstruction-with-EPG-dictionary-1"></a><a class="docs-heading-anchor-permalink" href="#Subspace-reconstruction-with-EPG-dictionary" title="Permalink"></a></h2><pre><code class="language-julia hljs">params = Dict{Symbol,Any}()
+params[:reconSize] = acq.encodingSize
+params[:reco] = &quot;multiCoilMultiEchoSubspace&quot;
+
+params[:regularization] = &quot;L1&quot;
+params[:sparseTrafo] = &quot;Wavelet&quot; #sparse trafo
+params[:λ] = Float32(0.03)
+params[:solver] = &quot;fista&quot;
+params[:iterations] = 60
+#params[:iterationsInner] = 5
+params[:senseMaps] = coilsens
+params[:normalizeReg] = true
+params[:basis] = basis_epg
+
+α_epg = reconstruction(acq, params)
+im_TE_julia = abs.(applySubspace(α_epg, params[:basis]));
+nothing #hide</code></pre><h2 id="BART-reconstruction"><a class="docs-heading-anchor" href="#BART-reconstruction">BART reconstruction</a><a id="BART-reconstruction-1"></a><a class="docs-heading-anchor-permalink" href="#BART-reconstruction" title="Permalink"></a></h2><p>In order to use BartIO, we need to send the path to the bart library. You can check that it works with the following code</p><pre><code class="language-julia hljs">BartIO.set_bart_path(&quot;path_bart&quot;)
+bart()</code></pre><pre><code class="language-julia hljs">if isfile(path_bart)
+    using Subspace_MESE.BartIO
+
+    params[:λ] = Float32(0.0025)
+    im_sub_bart,im_TE_bart = subspace_bart_reconstruction(acq,params,path_bart)
+end;
+nothing #hide</code></pre><h2 id="Fitting-of-the-data-to-obtain-T-maps"><a class="docs-heading-anchor" href="#Fitting-of-the-data-to-obtain-T-maps">Fitting of the data to obtain T₂ maps</a><a id="Fitting-of-the-data-to-obtain-T-maps-1"></a><a class="docs-heading-anchor-permalink" href="#Fitting-of-the-data-to-obtain-T-maps" title="Permalink"></a></h2><pre><code class="language-julia hljs">TE_vec = Float32.(LinRange(TE,TE*ETL,ETL))
+
+sl = Tuple[]
+push!(sl,(:,:,slice_to_show))
+push!(sl,(:,65,:))
+push!(sl,(65,:,:))
+
+fit_und = Any[]
+fit_julia = Any[]
+fit_bart = Any[]
+for i in eachindex(sl)
+    push!(fit_und,Subspace_MESE.T2Fit_exp_noise(abs.(im_u_sos[sl[i]...,:,1,1]),TE_vec;removePoint=true,L=4))
+    push!(fit_julia,Subspace_MESE.T2Fit_exp_noise(abs.(im_TE_julia[sl[i]...,:,1,1]),TE_vec;removePoint=true,L=4))
+    if isfile(path_bart)
+        push!(fit_bart,Subspace_MESE.T2Fit_exp_noise(abs.(im_TE_bart[sl[i]...,1,1,:]),TE_vec;removePoint=true,L=4))
+    end;
+end</code></pre><h2 id="Visualization-of-the-article-figure-8"><a class="docs-heading-anchor" href="#Visualization-of-the-article-figure-8">Visualization of the article figure 8</a><a id="Visualization-of-the-article-figure-8-1"></a><a class="docs-heading-anchor-permalink" href="#Visualization-of-the-article-figure-8" title="Permalink"></a></h2><pre><code class="language-julia hljs">using CairoMakie.Makie.MakieCore
+begin
+titlesize=20
+ylabelsize=20
+aspect = DataAspect()
+
+f=Figure(size=(1200,1600))
+#plot echo 1
+colorrange=MakieCore.Automatic()
+colormap=:grays
+
+ax = Axis(f[1,1];title=&quot;FFT\n &quot;,ylabel = &quot;Echo n°1\nTE = 7 ms&quot;,titlesize,ylabelsize)
+heatmap!(ax,circshift(im_u_sos[:,:,slice_to_show,1,1,1],(0,-10));colorrange,colormap)
+hidedecorations!(ax,label=false)
+ax = Axis(f[1,2];title=&quot;MRIReco\nW=0.03&quot;,titlesize)
+heatmap!(ax,circshift(im_TE_julia[:,:,slice_to_show,1,1,1],(0,-10));colorrange,colormap)
+hidedecorations!(ax)
+
+if(isfile(path_bart))
+    ax = Axis(f[1,3];title=&quot;BART\nW=0.0025&quot;,titlesize)
+    heatmap!(ax,circshift(abs.(im_TE_bart[:,:,slice_to_show,1,1,1]),(0,-10));colorrange,colormap)
+    hidedecorations!(ax)
+end
+
+#plot echo 10
+
+ax = Axis(f[2,1];ylabel = &quot;Echo n°10\nTE = 70 ms&quot;,titlesize,ylabelsize)
+heatmap!(ax,circshift(im_u_sos[:,:,slice_to_show,10,1,1],(0,-10));colorrange,colormap)
+hidedecorations!(ax,label=false)
+ax = Axis(f[2,2];titlesize)
+heatmap!(ax,circshift(im_TE_julia[:,:,slice_to_show,10,1,1],(0,-10));colorrange,colormap)
+hidedecorations!(ax)
+
+if(isfile(path_bart))
+    ax = Axis(f[2,3];titlesize)
+    heatmap!(ax,circshift(abs.(im_TE_bart[:,:,slice_to_show,1,1,10]),(0,-10));colorrange,colormap)
+    hidedecorations!(ax)
+end
+
+#plot T2 map
+colorrange=(0,150)
+colormap=:magma
+
+ax = Axis(f[3,1];ylabel = &quot;T₂ map: coronal&quot;,titlesize,ylabelsize)
+heatmap!(ax,circshift(fit_und[1][:,:,2],(0,-10));colorrange,colormap)
+hidedecorations!(ax,label=false)
+ax = Axis(f[3,2])
+h=heatmap!(ax,circshift(fit_julia[1][:,:,2],(0,-10));colorrange,colormap)
+hidedecorations!(ax)
+if(isfile(path_bart))
+    ax = Axis(f[3,3])
+    heatmap!(ax,circshift(fit_bart[1][:,:,2],(0,-10));colorrange,colormap)
+    hidedecorations!(ax)
+end
+Colorbar(f[3,4],h,label = &quot;T₂ [ms]&quot;,labelrotation=-pi/2,labelsize=20)
+#rowgap!(f.layout,3,10)
+
+#plot T2 sag
+sl_c = (0,20)
+ax = Axis(f[4,1];ylabel = &quot;T₂ map: sagittal&quot;,titlesize,ylabelsize,aspect=128/96)
+heatmap!(ax,circshift(reverse(fit_und[2][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax,label=false)
+ax = Axis(f[4,2],aspect=128/96)
+h=heatmap!(ax,circshift(reverse(fit_julia[2][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax)
+if(isfile(path_bart))
+    ax = Axis(f[4,3],aspect=128/96)
+    heatmap!(ax,circshift(reverse(fit_bart[2][:,:,2],dims=2),sl_c);colorrange,colormap)
+    hidedecorations!(ax)
+end
+Colorbar(f[4,4],h,label = &quot;T₂ [ms]&quot;,labelrotation=-pi/2,labelsize=20,height=Relative(0.85))
+rowgap!(f.layout,3,-10)
+
+#plot T2 axial
+sl_c = (-10,20)
+ax = Axis(f[5,1];ylabel = &quot;T₂ map : axial&quot;,titlesize,ylabelsize,aspect=128/96)
+heatmap!(ax,circshift(reverse(fit_und[3][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax,label=false)
+ax = Axis(f[5,2],aspect=128/96)
+h=heatmap!(ax,circshift(reverse(fit_julia[3][:,:,2],dims=2),sl_c);colorrange,colormap)
+hidedecorations!(ax)
+if(isfile(path_bart))
+    ax = Axis(f[5,3],aspect=128/96)
+    heatmap!(ax,circshift(reverse(fit_bart[3][:,:,2],dims=2),sl_c);colorrange,colormap)
+    hidedecorations!(ax)
+end
+Colorbar(f[5,4],h,label = &quot;T₂ [ms]&quot;,labelrotation=-pi/2,labelsize=20,height=Relative(0.85))
+rowgap!(f.layout,4,-35)
+
+f
+end
+
+save(&quot;fig_bart_julia.png&quot;,f)
+save(&quot;fig_bart_julia.eps&quot;,f)
+save(&quot;fig_bart_julia.pdf&quot;,f)</code></pre><hr/><p><em>This page was generated using <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../../../fit_T2/">« T₂ mapping</a><a class="docs-footer-nextpage" href="../../../api/">API »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.3.0 on <span class="colophon-date" title="Friday 3 May 2024 14:02">Friday 3 May 2024</span>. Using Julia version 1.10.3.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
