@@ -13,7 +13,9 @@ The reconstruction can be performed using MRIReco.jl (or BART for comparison pur
 - mono-exponential dictionary
 - EPG dictionary
 
-More information and examples are available in the article ![][paper-img] and in the  [![][docs-img]][docs-url]
+More information and examples are available in the article [![][paper-img]][paper-url] and in the  [![][docs-img]][docs-url]
+
+![](./docs/src/img/fig_explain.png)
 
 ## How to give credit
 
