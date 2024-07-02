@@ -25,9 +25,9 @@ Additionally, if you use the sequence available in the MR sequence folder, pleas
 
 ## Bruker sequence and protocol
 
-The accelerated 3D MESE MR sequence and the corresponding protocol for fully-sampled / CS6 / CS8 and CS10 acquisitions, as used in the publication, are available in the folder `MR sequence/PV6.0.1` for **Bruker Paravision PV6.0.1**.
+The accelerated 3D MESE MR sequence and the corresponding protocol for fully-sampled / CS6 / CS8 and CS10 acquisitions, as used in the publication, are available in the folder `MR sequence/PV6.0.1` for **Bruker Paravision PV6.0.1**. Source code is available in this private directory.  Source code is available in this private directory : https://github.com/CRMSB/SEQ_BRUKER_a_MSME_CS/tree/v0.1.1b
 
-The sequence was also implemented for **Bruker Paravision PV-360.3.5** and is available in the folder  `MR sequence/PV-360.3.5`.
+The sequence was also implemented for **Bruker Paravision PV-360.3.5** and is available in the folder  `MR sequence/PV-360.3.5`. Source code is available in this private directory : https://github.com/CRMSB/SEQ_BRUKER_a_MESE_CS_360
 
 ## Julia Installation
 
@@ -153,6 +153,14 @@ LoadError: ArgumentError: Package CairoMakie not found in current path
 ```
 You might not have launch the script from the right environment. You should first move to the `docs` folder before launching `julia --project -t auto` in order to use the Project.toml that includes `CairoMakie.jl` package.
 
+
+## Version
+
+- 1.1.0
+  - add sequence a_MESE_CS_360 (v0.0.1) for paravision 360 
+
+
+---
 
 [docs-img]: https://img.shields.io/badge/docs-latest%20release-blue.svg
 [docs-url]: https://crmsb.github.io/PAPER_subspace_MESE/dev/

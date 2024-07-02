@@ -1,7 +1,7 @@
 name = "Subspace_MESE"
 uuid = "03ee4b65-1735-4169-82da-5df6ad43f66c"
 authors = ["aTrotier <a.trotier@gmail.com> and contributors"]
-version = "1.0.2"
+version = "1.1.0"
 
 [deps]
 LinearOperatorCollection = "a4a2c56f-fead-462a-a3ab-85921a5f2575"
