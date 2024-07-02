@@ -25,7 +25,9 @@ Additionally, if you use the sequence available in the MR sequence folder, pleas
 
 ## Bruker sequence and protocol
 
-The accelerated 3D MESE MR sequence and the corresponding protocol for fully-sampled / CS6 / CS8 and CS10 acquisitions, as used in the publication, are available in the folder `MR sequence`
+The accelerated 3D MESE MR sequence and the corresponding protocol for fully-sampled / CS6 / CS8 and CS10 acquisitions, as used in the publication, are available in the folder `MR sequence/PV6.0.1` for **Bruker Paravision PV6.0.1**.
+
+The sequence was also implemented for **Bruker Paravision PV-360.3.5** and is available in the folder  `MR sequence/PV-360.3.5`.
 
 ## Julia Installation
 
