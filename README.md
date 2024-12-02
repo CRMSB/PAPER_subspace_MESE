@@ -7,7 +7,7 @@
 
 
 
-Subspace_MESE.jl is a Julia package that implements the subspace reconstruction for an accelerated MESE sequence for Bruker scanner (**PV6.0.1**). 
+Subspace_MESE.jl is a Julia package that implements the subspace reconstruction for an accelerated MESE sequence for Bruker scanner (**PV6.0.1 / PV360 3.5 and 3.6**). 
 The reconstruction can be performed using MRIReco.jl (or BART for comparison purpose) with 3 subspaces generated with :
 - a calibration area
 - mono-exponential dictionary
@@ -21,13 +21,14 @@ More information and examples are available in the article [![][paper-img]][pape
 
 If you use this package please acknowledge us by citing : https://doi.org/10.1002/mrm.30146
 
-Additionally, if you use the sequence available in the MR sequence folder, please contact us to sign the sequence transfer agreement : aurelien.trotier@rmsb.u-bordeaux.fr
+> [!IMPORTANT]
+> If you use the sequence available in the MR sequence folder, please contact us to sign the sequence transfer agreement : aurelien.trotier@rmsb.u-bordeaux.fr
 
 ## Bruker sequence and protocol
 
 The accelerated 3D MESE MR sequence and the corresponding protocol for fully-sampled / CS6 / CS8 and CS10 acquisitions, as used in the publication, are available in the folder `MR sequence/PV6.0.1` for **Bruker Paravision PV6.0.1**. Source code is available in this private directory.  Source code is available in this private directory : https://github.com/CRMSB/SEQ_BRUKER_a_MSME_CS/tree/v0.1.1b
 
-The sequence was also implemented for **Bruker Paravision PV-360.3.5** and is available in the folder  `MR sequence/PV-360.3.5`. Source code is available in this private directory : https://github.com/CRMSB/SEQ_BRUKER_a_MESE_CS_360
+The sequence was also implemented for **Bruker Paravision PV-360.3.5 / 3.6** and is available in the folder  `MR sequence`. Source code is available in this private directory : https://github.com/CRMSB/SEQ_BRUKER_a_MESE_CS_360
 
 ## Julia Installation
 

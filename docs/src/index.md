@@ -14,10 +14,10 @@ Additionally, if you use the sequence available in the MR sequence folder, pleas
 
 ## Bruker Acquisition
 
-This package is compatible with the sequence : **a\_MESE\_CS** which is available as a binary file in the folder : `MRI/PV6.0.1/`
+This package is compatible with the sequence : **a\_MESE\_CS** which is available as a binary file in the folder : `MR_sequence`
 
-The sequence is only available for the version PV6.0.1, implementation under PV360.6.5 is in progress.
-The protocol used for an acceleration factor of CS=6/8/10 is also available.
+The sequence is only available for the version PV6.0.1, PV360:3.5 and 3.6.
+The protocol used for an acceleration factor of CS=8 is also available.
 
 ## Reconstruction Pipeline
 
