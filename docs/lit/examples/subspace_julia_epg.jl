@@ -54,7 +54,10 @@ raw = RawAcquisitionData_MESE(b)
 acq = AcquisitionData(raw,OffsetBruker = true);
 
 # ## Estimate the coil sensitivity map with espirit
-coilsens = espirit(acq,eigThresh_2=0.0);
+ncalib = parse.(Int,b["CenterMaskSize"])
+ncalib > 24 ? ncalib = 24 : nothing
+
+coilsens = espirit(acq,eigThresh_2 = 0,(6,6,6),ncalib);
 
 # ## Direct reconstruction of undersampled acquisition
 
