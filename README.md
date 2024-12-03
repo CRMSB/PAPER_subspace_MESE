@@ -33,7 +33,7 @@ The sequence was also implemented for **Bruker Paravision PV-360.3.5 / 3.6** and
 Source code is available in the private repository :
 - https://github.com/CRMSB/SEQ_BRUKER_a_MESE_CS_360
 - https://github.com/CRMSB/SEQ_BRUKER_a_MSME_CS
-- 
+
 ## Julia Installation
 
 To use the code, we recommend downloading Julia version 1.9.3 with `juliaup`.
