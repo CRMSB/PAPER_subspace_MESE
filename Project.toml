@@ -16,7 +16,7 @@ MRIReco = "bdf86e05-2d2b-5731-a332-f3fe1f9e047f"
 
 [compat]
 julia = "1.9"
-LinearOperatorCollection = "=1.1.2"
+LinearOperatorCollection = "2.1.0"
 BartIO = "0.3.1"
 EPGsim = "0.1.1"
 FFTW = "1.7.2"
