@@ -22,8 +22,8 @@ EPGsim = "0.1.1"
 FFTW = "1.7.2"
 LsqFit = "0.15.0"
 MRICoilSensitivities = "0.1.3"
-MRIFiles = "0.2.0"
-MRIReco = "0.8.1"
+MRIFiles = "0.3.2"
+MRIReco = "0.9.0"
 
 
 [extras]
